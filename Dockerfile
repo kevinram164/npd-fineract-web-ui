@@ -15,6 +15,9 @@ RUN apk add --no-cache git
 
 WORKDIR /usr/src/app
 
+# Kaniko COPY giữ ownership khác root → git từ postinstall (version.js) báo dubious ownership
+RUN git config --global --add safe.directory /usr/src/app
+
 ENV PATH=/usr/src/app/node_modules/.bin:$PATH
 
 ENV CYPRESS_INSTALL_BINARY=0
