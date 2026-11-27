@@ -1,0 +1,69 @@
+<!--
+  Copyright since 2025 Mifos Initiative
+
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at http://mozilla.org/MPL/2.0/.
+-->
+
+<div class="office-overview">
+  <div class="operational-column">
+    <mat-card class="overview-card">
+      <mat-card-content>
+        <div class="section-heading">
+          <h2>{{ 'labels.heading.General' | translate }}</h2>
+          <a mat-button color="primary" [routerLink]="['../edit']" *mifosxHasPermission="'UPDATE_OFFICE'">
+            {{ 'labels.buttons.Edit' | translate }}
+          </a>
+        </div>
+        <dl class="details-grid">
+          <div class="detail-field">
+            <dt>{{ 'labels.inputs.Office Name' | translate }}</dt>
+            <dd>{{ officeData.name ?? ('labels.inputs.Unassigned' | translate) }}</dd>
+          </div>
+          <div class="detail-field">
+            <dt>{{ 'labels.inputs.Name Decorated' | translate }}</dt>
+            <dd>{{ officeData.nameDecorated || ('labels.inputs.Unassigned' | translate) }}</dd>
+          </div>
+          <div class="detail-field">
+            <dt>{{ 'labels.inputs.Parent Office' | translate }}</dt>
+            <dd>{{ officeData.parentName || ('labels.inputs.Unassigned' | translate) }}</dd>
+          </div>
+          <div class="detail-field">
+            <dt>{{ 'labels.inputs.Opened On' | translate }}</dt>
+            <dd>
+              {{
+                officeData.openingDate
+                  ? (officeData.openingDate | dateFormat)
+                  : ('labels.inputs.Unassigned' | translate)
+              }}
+            </dd>
+          </div>
+          <div class="detail-field">
+            <dt>{{ 'labels.inputs.External Id' | translate }}</dt>
+            <dd>
+              @if (
+                officeData.externalId !== null && officeData.externalId !== undefined && officeData.externalId !== ''
+              ) {
+                <mifosx-external-identifier [externalId]="officeData.externalId" [completed]="true" />
+              } @else {
+                {{ 'labels.inputs.Unassigned' | translate }}
+              }
+            </dd>
+          </div>
+        </dl>
+      </mat-card-content>
+    </mat-card>
+    <ng-container *mifosxHasPermission="'READ_OFFICE'">
+      <mat-card class="overview-card"
+        ><mat-card-content> <mifosx-office-services-tab [readOnly]="true" /> </mat-card-content
+      ></mat-card>
+      <mat-card class="overview-card"
+        ><mat-card-content> <mifosx-office-schedules-tab [readOnly]="true" /> </mat-card-content
+      ></mat-card>
+    </ng-container>
+  </div>
+  <mat-card class="overview-card location-card" *mifosxHasPermission="'READ_OFFICE'">
+    <mat-card-content><mifosx-office-address-tab [readOnly]="true" /></mat-card-content>
+  </mat-card>
+</div>

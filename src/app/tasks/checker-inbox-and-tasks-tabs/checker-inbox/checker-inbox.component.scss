@@ -1,0 +1,408 @@
+/**
+ * Copyright since 2025 Mifos Initiative
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+
+:host {
+  --checker-primary-text: var(--md-sys-color-on-primary, var(--ds-action-on-fill));
+
+  display: block;
+  min-width: 0;
+  color: var(--ds-text-1);
+}
+
+:host-context(.dark-theme) {
+  --checker-primary-text: var(--md-sys-color-on-primary, var(--ds-surface-alt));
+}
+
+.inbox-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 100%);
+  gap: 24px;
+  align-items: start;
+}
+
+.inbox-layout.has-detail {
+  grid-template-columns: minmax(0, 64%) minmax(0, calc(36% - 24px));
+}
+
+.inbox-panel,
+.detail-panel {
+  min-width: 0;
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-lg);
+  box-shadow: none;
+  background: var(--ds-surface);
+}
+
+.filter-toolbar {
+  padding: 16px;
+}
+
+.customer-search {
+  width: 100%;
+}
+
+.filter-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-top: 8px;
+
+  mat-form-field {
+    flex: 1 1 112px;
+    min-width: 0;
+    max-width: 192px;
+  }
+}
+
+:host ::ng-deep .filter-toolbar .mat-mdc-form-field-infix {
+  min-height: 48px;
+  padding-block: 12px;
+}
+
+.date-filter {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.active-filter {
+  color: var(--md-sys-color-primary);
+  background: color-mix(in srgb, var(--md-sys-color-primary) 8%, var(--ds-surface));
+}
+
+.selection-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-block: 1px solid var(--ds-border);
+  background: color-mix(in srgb, var(--md-sys-color-primary) 6%, var(--ds-surface));
+
+  strong {
+    margin-inline-end: 8px;
+  }
+}
+
+mat-checkbox {
+  --mat-checkbox-selected-icon-color: var(--md-sys-color-primary);
+  --mat-checkbox-selected-focus-icon-color: var(--md-sys-color-primary);
+  --mat-checkbox-selected-hover-icon-color: var(--md-sys-color-primary);
+  --mat-checkbox-selected-checkmark-color: var(--checker-primary-text);
+  --mat-checkbox-selected-focus-state-layer-color: var(--md-sys-color-primary);
+  --mat-checkbox-selected-hover-state-layer-color: var(--md-sys-color-primary);
+  --mat-checkbox-selected-pressed-state-layer-color: var(--md-sys-color-primary);
+}
+
+.approve-action.mat-mdc-unelevated-button {
+  --mat-button-filled-container-color: var(--md-sys-color-primary);
+  --mat-button-filled-label-text-color: var(--checker-primary-text);
+
+  background: var(--md-sys-color-primary);
+  color: var(--checker-primary-text);
+}
+
+.approve-action:disabled {
+  background: var(--ds-surface-alt);
+  color: var(--ds-text-2);
+}
+
+.reject-action:disabled,
+.delete-action:disabled {
+  color: var(--ds-text-3);
+}
+
+.reject-action,
+.delete-action,
+.error-message {
+  color: var(--ds-alert);
+}
+
+.table-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  background: var(--ds-surface);
+}
+
+th.mat-mdc-header-cell {
+  color: var(--ds-text-2);
+  background: var(--ds-surface-alt);
+  font-size: 0.75rem;
+}
+
+td.mat-mdc-cell,
+th.mat-mdc-header-cell {
+  padding: 8px;
+  border-bottom-color: var(--ds-border);
+}
+
+td.mat-mdc-cell {
+  height: 72px;
+  font-size: 0.875rem;
+}
+
+.mat-column-select {
+  width: 48px;
+}
+
+.mat-column-resource {
+  width: 40%;
+}
+
+.mat-column-id {
+  text-align: end;
+  color: var(--ds-text-2);
+}
+
+tr.mat-mdc-row {
+  cursor: pointer;
+
+  &:hover {
+    background: var(--ds-surface-alt);
+  }
+}
+
+tr.selected-row {
+  background: color-mix(in srgb, var(--md-sys-color-primary) 8%, var(--ds-surface));
+  box-shadow: inset 3px 0 var(--md-sys-color-primary);
+}
+
+tr.own-request {
+  color: var(--ds-text-2);
+  background: var(--ds-surface-alt);
+}
+
+.lock-icon {
+  margin-inline: 8px;
+  color: var(--ds-text-2);
+  font-size: 20px;
+}
+
+.resource-button {
+  padding: 0;
+  height: auto;
+  min-height: 40px;
+  white-space: normal;
+  text-align: start;
+  justify-content: start;
+  line-height: 1.4;
+  font-weight: 600;
+  color: inherit;
+  overflow-wrap: anywhere;
+}
+
+.metadata {
+  display: block;
+  font-size: 0.8125rem;
+  color: var(--ds-text-2);
+  line-height: 1.5;
+
+  &.inline {
+    display: inline;
+  }
+}
+
+.action-badge {
+  display: inline-block;
+  padding: 0 8px;
+  border-radius: var(--ds-radius);
+  background: color-mix(in srgb, var(--md-sys-color-primary) 12%, var(--ds-surface));
+  color: var(--md-sys-color-primary);
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 1.75;
+
+  &.create {
+    color: var(--ds-paid);
+    background: var(--ds-paid-bg);
+  }
+
+  &.delete {
+    color: var(--ds-alert);
+    background: color-mix(in srgb, var(--ds-alert) 10%, var(--ds-surface));
+  }
+
+  &.disburse {
+    color: var(--ds-partial);
+    background: var(--ds-partial-bg);
+  }
+}
+
+.notice {
+  padding: 16px;
+  margin: 0;
+  background: var(--ds-surface-alt);
+  overflow-wrap: anywhere;
+  font-size: 0.875rem;
+}
+
+.empty-state {
+  padding: 48px 24px;
+  text-align: center;
+  color: var(--ds-text-2);
+}
+
+.inbox-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  border-top: 1px solid var(--ds-border);
+  color: var(--ds-text-2);
+  font-size: 0.875rem;
+}
+
+.detail-panel {
+  padding: 16px;
+  overflow-wrap: anywhere;
+
+  h2 {
+    font-size: 1.25rem;
+    line-height: 1.4;
+    margin: 16px 0 8px;
+  }
+
+  h3 {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 0.875rem;
+    margin-block: 16px 8px;
+  }
+
+  a {
+    color: var(--md-sys-color-primary);
+  }
+}
+
+.detail-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.maker-card {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 16px;
+  margin-block: 16px;
+  background: var(--ds-surface-alt);
+  border-radius: var(--ds-radius);
+}
+
+.changes-list {
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius);
+  margin: 0;
+
+  > div {
+    padding: 8px 16px;
+    border-bottom: 1px solid var(--ds-border);
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+
+  dt {
+    color: var(--ds-text-2);
+    font-size: 0.8125rem;
+  }
+
+  dd {
+    margin: 8px 0 0;
+    color: var(--ds-text-1);
+  }
+}
+
+pre {
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font: inherit;
+}
+
+.request-json {
+  padding: 16px;
+  background: var(--ds-surface-alt);
+  max-height: 320px;
+  overflow: auto;
+  font-family: monospace;
+  font-size: 0.75rem;
+}
+
+.json-toggle {
+  margin-block: 8px;
+  padding-inline: 0;
+  max-width: 100%;
+}
+
+.comment-form {
+  margin-block: 16px;
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  p {
+    margin-block: 8px;
+  }
+}
+
+.detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+button:focus-visible,
+.table-scroll:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--md-sys-color-primary);
+  outline-offset: 2px;
+}
+
+@media (width <= 1500px) {
+  .inbox-layout.has-detail {
+    grid-template-columns: minmax(0, 100%);
+  }
+
+  .detail-panel {
+    grid-row: 1;
+  }
+}
+
+@media (width <= 600px) {
+  .inbox-layout {
+    gap: 16px;
+  }
+
+  table {
+    min-width: 640px;
+  }
+
+  .filter-controls mat-form-field {
+    max-width: none;
+  }
+
+  .filter-toolbar,
+  .detail-panel {
+    padding: 16px;
+  }
+}
+
+.date-filter[hidden] {
+  display: none;
+}

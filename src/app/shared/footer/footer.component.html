@@ -1,0 +1,22 @@
+<!--
+  Copyright since 2025 Mifos Initiative
+
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at http://mozilla.org/MPL/2.0/.
+-->
+<!-- Business date: independent of the backend info setting -->
+@if (isBusinessDateDefined) {
+  <div class="business-date-field">
+    <span class="business-date-label">{{ 'labels.text.Current Business Date' | translate }}</span>
+    <span class="business-date-chip">
+      <span class="business-date-dot" aria-hidden="true"></span>
+      {{ businessDate | date: 'EEEE, MMMM dd, y' }}
+    </span>
+  </div>
+}
+
+<!-- Backend info: opt-in, the full set is always available in the System Information view -->
+@if (displayBackEndInfo) {
+  <mifosx-status-bar></mifosx-status-bar>
+}

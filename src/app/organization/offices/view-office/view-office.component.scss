@@ -1,0 +1,157 @@
+/**
+ * Copyright since 2025 Mifos Initiative
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+
+:host {
+  display: block;
+  min-width: 0;
+  color: var(--ds-text-1);
+
+  --office-accent: var(--md-sys-color-primary);
+}
+
+.office-workspace {
+  padding: 16px 24px 32px;
+  min-width: 0;
+}
+
+.office-header,
+.office-identity,
+.office-title,
+.office-metadata,
+.office-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.office-header {
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.office-identity {
+  min-width: 0;
+  flex: 1 1 480px;
+}
+
+.office-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 64px;
+  height: 64px;
+  border-radius: var(--ds-radius-lg);
+  color: var(--ds-action-on-fill);
+  background: color-mix(in srgb, var(--office-accent) 64%, #102e29);
+  font-size: 24px;
+}
+
+.office-introduction {
+  min-width: 0;
+}
+
+.office-title {
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin-bottom: 8px;
+
+  h1 {
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: 600;
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+  }
+}
+
+.hierarchy-badge,
+.tab-count {
+  padding: 0 8px;
+  border-radius: var(--ds-radius);
+  background: var(--ds-surface-alt);
+  color: var(--ds-text-2);
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+.office-metadata {
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  color: var(--ds-text-2);
+  font-size: 0.875rem;
+
+  span {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    overflow-wrap: anywhere;
+  }
+
+  b {
+    font-weight: 400;
+    word-break: break-all;
+  }
+}
+
+.office-actions {
+  flex-wrap: wrap;
+
+  button {
+    color: var(--ds-action-on-fill);
+    min-height: 48px;
+    border-radius: var(--ds-radius);
+  }
+}
+
+.navigation-tabs {
+  --mat-tab-active-label-text-color: var(--office-accent);
+  --mat-tab-active-focus-label-text-color: var(--office-accent);
+  --mat-tab-active-hover-label-text-color: var(--office-accent);
+  --mat-tab-inactive-label-text-color: var(--ds-text-2);
+  --mat-tab-active-indicator-color: var(--office-accent);
+
+  border-bottom: 1px solid var(--ds-border);
+}
+
+.office-tab {
+  min-width: auto;
+  padding: 0 24px;
+  gap: 8px;
+  color: var(--ds-text-2);
+  font-weight: 500;
+}
+
+.tab-panel {
+  display: block;
+  padding-top: 24px;
+  min-width: 0;
+}
+
+@media (width < 768px) {
+  .office-workspace {
+    padding: 16px 8px 24px;
+  }
+
+  .office-identity {
+    align-items: flex-start;
+    flex-basis: 100%;
+  }
+
+  .office-icon {
+    flex-basis: 48px;
+    height: 48px;
+  }
+
+  .office-actions {
+    width: 100%;
+  }
+
+  .office-tab {
+    padding-inline: 16px;
+  }
+}

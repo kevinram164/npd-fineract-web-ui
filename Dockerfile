@@ -1,0 +1,50 @@
+###############
+### STAGE 1: Build app
+###############
+ARG BUILDER_IMAGE=node:26-alpine
+ARG NGINX_IMAGE=nginx:1.31.7-alpine3.24
+
+FROM $BUILDER_IMAGE AS builder
+ARG NPM_REGISTRY_URL=https://registry.npmjs.org/
+ARG BUILD_ENVIRONMENT_OPTIONS="--configuration production"
+
+# Set the environment variable to increase Node.js memory limit
+ENV NODE_OPTIONS="--max-old-space-size=4096"
+
+RUN apk add --no-cache git
+
+WORKDIR /usr/src/app
+
+ENV PATH=/usr/src/app/node_modules/.bin:$PATH
+
+ENV CYPRESS_INSTALL_BINARY=0
+ENV PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
+
+COPY ./ /usr/src/app/
+
+RUN npm cache clear --force
+
+RUN npm config set fetch-retry-maxtimeout 120000
+RUN npm config set registry $NPM_REGISTRY_URL --location=global
+
+RUN npm ci
+
+RUN sh -c "ng build --output-path=/dist $BUILD_ENVIRONMENT_OPTIONS"
+
+###############
+### STAGE 2: Serve app with nginx ###
+###############
+FROM $NGINX_IMAGE
+
+# Pick up Alpine security fixes published before the nginx image is rebuilt on them.
+RUN apk upgrade --no-cache
+
+# PDF.js loads its bundled worker as an ES module; nginx otherwise serves .mjs as octet-stream.
+RUN sed -i 's#application/javascript[[:space:]]*js;#application/javascript js mjs;#' /etc/nginx/mime.types
+
+COPY --from=builder /dist/browser /usr/share/nginx/html
+
+EXPOSE 80
+
+# When the container starts, replace the env.js with values from environment variables
+CMD ["/bin/sh",  "-c",  "envsubst < /usr/share/nginx/html/assets/env.template.js > /usr/share/nginx/html/assets/env.js && exec nginx -g 'daemon off;'"]

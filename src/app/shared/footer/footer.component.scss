@@ -1,0 +1,71 @@
+/**
+ * Copyright since 2025 Mifos Initiative
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+
+// The footer adds no box of its own: the status bar must be a direct child of the scrolling
+// content area to stick to its bottom.
+:host {
+  display: contents;
+}
+
+// ===== Business Date (independent of the backend info setting) =====
+.business-date-field {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 6px 0;
+}
+
+.business-date-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ds-text-3);
+}
+
+.business-date-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border: 1px solid color-mix(in srgb, var(--ds-paid) 35%, transparent);
+  border-radius: 20px;
+  background: var(--ds-paid-bg);
+  color: var(--ds-paid);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.business-date-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ds-paid);
+  animation: business-date-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes business-date-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .business-date-dot {
+    animation: none;
+  }
+}

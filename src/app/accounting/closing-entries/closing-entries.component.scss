@@ -1,0 +1,27 @@
+/**
+ * Copyright since 2025 Mifos Initiative
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+
+table {
+  width: 100%;
+
+  .select-row {
+    transition:
+      background-color 150ms ease,
+      box-shadow 150ms ease;
+
+    &:hover {
+      cursor: pointer;
+      background-color: color-mix(in srgb, var(--md-sys-color-primary, #1074b9) 8%, transparent);
+      box-shadow: inset 4px 0 0 var(--md-sys-color-primary, #1074b9);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+    }
+  }
+}

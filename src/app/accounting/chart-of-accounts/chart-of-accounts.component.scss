@@ -1,0 +1,74 @@
+/**
+ * Copyright since 2025 Mifos Initiative
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+
+table {
+  width: 100%;
+
+  .select-row {
+    transition:
+      background-color 150ms ease,
+      box-shadow 150ms ease;
+
+    &:hover {
+      cursor: pointer;
+      background-color: color-mix(in srgb, var(--md-sys-color-primary, #1074b9) 8%, transparent);
+      box-shadow: inset 4px 0 0 var(--md-sys-color-primary, #1074b9);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+    }
+  }
+}
+
+.gl-account-tree {
+  ul,
+  li {
+    margin-top: 0;
+    margin-bottom: 0;
+    list-style-type: none;
+  }
+
+  li {
+    span {
+      cursor: pointer;
+    }
+  }
+
+  .gl-account-tree-invisible {
+    display: none;
+  }
+}
+
+.content {
+  div {
+    margin: 1rem 0;
+    overflow-wrap: break-word;
+
+    &.header {
+      font-weight: 500;
+    }
+  }
+}
+
+// TODO: CONFIGURE THESE CLASSES GLOBALLY
+.enabled {
+  color: #32cd32;
+}
+
+.disabled {
+  color: #f44366;
+}
+
+.manual-entries-allowed {
+  color: #32cd32;
+}
+
+.manual-entries-not-allowed {
+  color: #f44366;
+}
